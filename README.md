@@ -5,6 +5,8 @@
 
 A Jellyfin plugin that adds a **reset progress** button to the Continue Watching row on the home screen. One click sets the episode or movie back to 0:00 and removes it from the row.
 
+![Reset progress button on a Continue Watching card](docs/reset-progress-button.png)
+
 Without the plugin, you have to start playback, seek back to 0:00 and stop again.
 
 ## Features

@@ -6,6 +6,7 @@
     "overview": "Reset the watch progress of items in Continue Watching with one click",
     "owner": "oppahansi",
     "category": "General",
+    "imageUrl": "https://raw.githubusercontent.com/oppahansi/resetprogress/main/docs/reset-progress-button.png",
     "versions": [
       {
         "version": "1.0.0.1202",

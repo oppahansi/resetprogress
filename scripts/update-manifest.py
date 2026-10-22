@@ -25,6 +25,7 @@ PLUGIN = {
     "overview": "Reset the watch progress of items in Continue Watching with one click",
     "owner": "oppahansi",
     "category": "General",
+    "imageUrl": f"https://raw.githubusercontent.com/{REPO}/main/docs/reset-progress-button.png",
 }
 
 
