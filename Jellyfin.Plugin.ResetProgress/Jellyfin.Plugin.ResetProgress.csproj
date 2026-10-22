@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Build for a specific Jellyfin server version:
+      dotnet build -c Release -p:JellyfinVersion=10.10.7
+    The target framework follows from the Jellyfin version. See README.md.
+  -->
+  <PropertyGroup>
+    <JellyfinVersion Condition="'$(JellyfinVersion)' == ''">12.2.0</JellyfinVersion>
+    <PluginVersion Condition="'$(PluginVersion)' == ''">1.0.0</PluginVersion>
+    <_JellyfinMajor>$([System.Version]::Parse('$(JellyfinVersion)').Major)</_JellyfinMajor>
+    <_JellyfinMinor>$([System.Version]::Parse('$(JellyfinVersion)').Minor)</_JellyfinMinor>
+    <!-- 4th version component encodes the Jellyfin line (10.11 -> 1011) so every build has a unique, ordered version. -->
+    <_AbiCode>$([MSBuild]::Add($([MSBuild]::Multiply($(_JellyfinMajor), 100)), $(_JellyfinMinor)))</_AbiCode>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework Condition="'$(_JellyfinMajor)' == '10' And $(_JellyfinMinor) &lt; 11">net8.0</TargetFramework>
+    <TargetFramework Condition="'$(_JellyfinMajor)' == '10' And $(_JellyfinMinor) &gt;= 11">net9.0</TargetFramework>
+    <TargetFramework Condition="$(_JellyfinMajor) &gt;= 12">net10.0</TargetFramework>
+    <RootNamespace>Jellyfin.Plugin.ResetProgress</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Version>$(PluginVersion).$(_AbiCode)</Version>
+    <AssemblyVersion>$(PluginVersion).$(_AbiCode)</AssemblyVersion>
+    <FileVersion>$(PluginVersion).$(_AbiCode)</FileVersion>
+    <Authors>oppahansi</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/oppahansi/resetprogress</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Jellyfin.Controller" Version="$(JellyfinVersion)">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Jellyfin.Model" Version="$(JellyfinVersion)">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Web\resetProgress.js" />
+    <EmbeddedResource Include="Web\resetProgress.js" />
+  </ItemGroup>
+
+</Project>

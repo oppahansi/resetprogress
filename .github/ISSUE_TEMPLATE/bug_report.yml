@@ -1,0 +1,39 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: input
+    id: jellyfin
+    attributes:
+      label: Jellyfin version
+      placeholder: "10.11.11"
+    validations:
+      required: true
+  - type: input
+    id: plugin
+    attributes:
+      label: Plugin version
+      description: Shown under Dashboard → Plugins
+      placeholder: "1.0.0.1011"
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How does Jellyfin run?
+      options: [Docker, Linux package, Windows, macOS, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you expected and what happened instead. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log output
+      description: Related lines from Dashboard → Logs. Remove anything you don't want to share.
+      render: text

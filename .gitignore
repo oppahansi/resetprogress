@@ -1,0 +1,8 @@
+bin/
+obj/
+artifacts/
+dist/
+.vs/
+.idea/
+*.user
+.DS_Store
