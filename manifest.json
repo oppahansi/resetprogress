@@ -9,6 +9,54 @@
     "imageUrl": "https://raw.githubusercontent.com/oppahansi/resetprogress/main/docs/reset-progress-button.png",
     "versions": [
       {
+        "version": "1.0.1.1202",
+        "changelog": "https://github.com/oppahansi/resetprogress/releases/tag/v1.0.1-jellyfin-12.2",
+        "targetAbi": "12.2.0.0",
+        "sourceUrl": "https://github.com/oppahansi/resetprogress/releases/download/v1.0.1-jellyfin-12.2/resetprogress_1.0.1_jellyfin-12.2.zip",
+        "checksum": "2384c7ced36c3d36d64051015994c481",
+        "timestamp": "2026-10-31T12:12:55Z"
+      },
+      {
+        "version": "1.0.1.1201",
+        "changelog": "https://github.com/oppahansi/resetprogress/releases/tag/v1.0.1-jellyfin-12.1",
+        "targetAbi": "12.1.0.0",
+        "sourceUrl": "https://github.com/oppahansi/resetprogress/releases/download/v1.0.1-jellyfin-12.1/resetprogress_1.0.1_jellyfin-12.1.zip",
+        "checksum": "7efaeccd822ffbeb6cf1dd0cb5af1bed",
+        "timestamp": "2026-10-31T12:12:53Z"
+      },
+      {
+        "version": "1.0.1.1200",
+        "changelog": "https://github.com/oppahansi/resetprogress/releases/tag/v1.0.1-jellyfin-12.0",
+        "targetAbi": "12.0.0.0",
+        "sourceUrl": "https://github.com/oppahansi/resetprogress/releases/download/v1.0.1-jellyfin-12.0/resetprogress_1.0.1_jellyfin-12.0.zip",
+        "checksum": "a4c733d16edd8e2c54666c03fa1bd005",
+        "timestamp": "2026-10-31T12:12:50Z"
+      },
+      {
+        "version": "1.0.1.1011",
+        "changelog": "https://github.com/oppahansi/resetprogress/releases/tag/v1.0.1-jellyfin-10.11",
+        "targetAbi": "10.11.0.0",
+        "sourceUrl": "https://github.com/oppahansi/resetprogress/releases/download/v1.0.1-jellyfin-10.11/resetprogress_1.0.1_jellyfin-10.11.zip",
+        "checksum": "ca021d61456b48706a838d459b68ac79",
+        "timestamp": "2026-10-31T12:12:46Z"
+      },
+      {
+        "version": "1.0.1.1010",
+        "changelog": "https://github.com/oppahansi/resetprogress/releases/tag/v1.0.1-jellyfin-10.10",
+        "targetAbi": "10.10.0.0",
+        "sourceUrl": "https://github.com/oppahansi/resetprogress/releases/download/v1.0.1-jellyfin-10.10/resetprogress_1.0.1_jellyfin-10.10.zip",
+        "checksum": "6058ec2e96c29596909e287a2dd929cb",
+        "timestamp": "2026-10-31T12:12:41Z"
+      },
+      {
+        "version": "1.0.1.1009",
+        "changelog": "https://github.com/oppahansi/resetprogress/releases/tag/v1.0.1-jellyfin-10.9",
+        "targetAbi": "10.9.0.0",
+        "sourceUrl": "https://github.com/oppahansi/resetprogress/releases/download/v1.0.1-jellyfin-10.9/resetprogress_1.0.1_jellyfin-10.9.zip",
+        "checksum": "c485ba55b5d998bb4091809c8fa19971",
+        "timestamp": "2026-10-31T12:12:39Z"
+      },
+      {
         "version": "1.0.0.1202",
         "changelog": "https://github.com/oppahansi/resetprogress/releases/tag/v1.0.0-jellyfin-12.2",
         "targetAbi": "12.2.0.0",
