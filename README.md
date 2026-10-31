@@ -22,6 +22,8 @@ The button only appears in the home screen's Continue Watching row, not in Conti
 
 | Jellyfin | .NET | Release tag |
 |---|---|---|
+| 12.4.x | 10 | `v<version>-jellyfin-12.4` |
+| 12.3.x | 10 | `v<version>-jellyfin-12.3` |
 | 12.2.x | 10 | `v<version>-jellyfin-12.2` |
 | 12.1.x | 10 | `v<version>-jellyfin-12.1` |
 | 12.0.x | 10 | `v<version>-jellyfin-12.0` |

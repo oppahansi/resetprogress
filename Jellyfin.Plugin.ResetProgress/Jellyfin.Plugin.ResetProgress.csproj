@@ -6,7 +6,7 @@
     The target framework follows from the Jellyfin version. See README.md.
   -->
   <PropertyGroup>
-    <JellyfinVersion Condition="'$(JellyfinVersion)' == ''">12.2.0</JellyfinVersion>
+    <JellyfinVersion Condition="'$(JellyfinVersion)' == ''">12.4.0</JellyfinVersion>
     <PluginVersion Condition="'$(PluginVersion)' == ''">1.0.0</PluginVersion>
     <_JellyfinMajor>$([System.Version]::Parse('$(JellyfinVersion)').Major)</_JellyfinMajor>
     <_JellyfinMinor>$([System.Version]::Parse('$(JellyfinVersion)').Minor)</_JellyfinMinor>
