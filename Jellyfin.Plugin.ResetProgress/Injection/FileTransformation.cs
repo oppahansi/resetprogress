@@ -12,7 +12,8 @@ namespace Jellyfin.Plugin.ResetProgress.Injection;
 /// </summary>
 public static class FileTransformation
 {
-    private static readonly Guid TransformationId = Guid.Parse("8db3386c-36e2-4b1f-8b4e-5644122c5f15");
+    // Must be unique per plugin: File Transformation ignores a second registration with an id it already has.
+    private static readonly Guid TransformationId = Guid.Parse("9cb8dc42-ec06-4d78-9202-a71a08645b91");
 
     /// <summary>
     /// Registers the index.html transformation if File Transformation is installed.

@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Jellyfin.Plugin.ResetProgress.Injection;
 
@@ -10,6 +12,10 @@ namespace Jellyfin.Plugin.ResetProgress.Injection;
 public static class IndexHtml
 {
     private const string FileName = "index.html";
+    private const int MaxAttempts = 20;
+
+    private static readonly TimeSpan RetryDelay = TimeSpan.FromMilliseconds(250);
+    private static readonly UTF8Encoding Utf8 = new(encoderShouldEmitUTF8Identifier: false);
 
     private static readonly Regex ScriptTag = new(
         @"<script plugin=""ResetProgress""[^>]*></script>\s*",
@@ -60,27 +66,51 @@ public static class IndexHtml
         error = null;
         var path = Path.Combine(webPath, FileName);
 
-        try
+        if (!File.Exists(path))
         {
-            if (!File.Exists(path))
+            error = $"{path} doesn't exist";
+            return false;
+        }
+
+        // Other plugins patch index.html on startup too, at the same moment. Read and write through one exclusively
+        // locked handle, so nobody reads a half-written file; wait a little while someone else holds it.
+        for (var attempt = 1; ; attempt++)
+        {
+            try
             {
-                error = $"{path} doesn't exist";
+                using var stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                string html;
+                using (var reader = new StreamReader(stream, Utf8, detectEncodingFromByteOrderMarks: true, bufferSize: 4096, leaveOpen: true))
+                {
+                    html = reader.ReadToEnd();
+                }
+
+                // Never build on a file another writer already broke; that would only make it permanent.
+                if (html.IndexOf("<html", StringComparison.OrdinalIgnoreCase) < 0 || html.IndexOf("</body>", StringComparison.OrdinalIgnoreCase) < 0)
+                {
+                    error = $"{path} looks damaged ({html.Length} characters, no <html>/<body>), left it alone";
+                    return false;
+                }
+
+                var patched = rewrite(html);
+                if (!string.Equals(html, patched, StringComparison.Ordinal))
+                {
+                    stream.SetLength(0);
+                    using var writer = new StreamWriter(stream, Utf8, bufferSize: 4096, leaveOpen: true);
+                    writer.Write(patched);
+                }
+
+                return true;
+            }
+            catch (IOException) when (attempt < MaxAttempts)
+            {
+                Thread.Sleep(RetryDelay);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                error = ex.Message;
                 return false;
             }
-
-            var html = File.ReadAllText(path);
-            var patched = rewrite(html);
-            if (!string.Equals(html, patched, StringComparison.Ordinal))
-            {
-                File.WriteAllText(path, patched);
-            }
-
-            return true;
-        }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
-        {
-            error = ex.Message;
-            return false;
         }
     }
 }
