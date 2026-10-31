@@ -2,6 +2,7 @@
 
 [![Build](https://github.com/oppahansi/resetprogress/actions/workflows/build.yml/badge.svg)](https://github.com/oppahansi/resetprogress/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Discord](https://img.shields.io/static/v1?logo=discord&label=discord&message=Join&color=blue)](https://discord.gg/ncKmDEArqg)
 
 A Jellyfin plugin that adds a **reset progress** button to the Continue Watching row on the home screen. One click sets the episode or movie back to 0:00 and removes it from the row.
 
