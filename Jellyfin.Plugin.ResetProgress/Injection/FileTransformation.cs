@@ -59,7 +59,13 @@ public static class FileTransformation
     /// <returns>The patched file.</returns>
     public static string TransformIndexHtml(TransformationPayload payload)
     {
-        return IndexHtml.Inject(payload.Contents ?? string.Empty);
+        var contents = payload.Contents ?? string.Empty;
+
+        // File Transformation reads the pattern as an unanchored regex, so "index.html" also matches jellyfin-web's
+        // "*-index-html.*.chunk.js" files, and a tag in one of those breaks the JavaScript. Don't narrow the pattern
+        // instead: transforms are grouped by the literal pattern, with an exact match first, so a different pattern
+        // would be skipped for index.html as soon as another plugin registers plain "index.html".
+        return IndexHtml.IsHtmlDocument(contents) ? IndexHtml.Inject(contents) : contents;
     }
 
     /// <summary>

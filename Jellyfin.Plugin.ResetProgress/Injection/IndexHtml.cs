@@ -22,6 +22,18 @@ public static class IndexHtml
         RegexOptions.Compiled);
 
     /// <summary>
+    /// Tells whether the contents are an HTML document, rather than a script whose file name looks like index.html.
+    /// </summary>
+    /// <param name="contents">The file contents.</param>
+    /// <returns>Whether tags can be added to the contents.</returns>
+    public static bool IsHtmlDocument(string contents)
+    {
+        var start = contents.AsSpan().TrimStart().TrimStart('\uFEFF');
+        return start.StartsWith("<!doctype html", StringComparison.OrdinalIgnoreCase)
+            || start.StartsWith("<html", StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <summary>
     /// Returns the page with exactly one, current script tag.
     /// </summary>
     /// <param name="html">The index.html contents.</param>

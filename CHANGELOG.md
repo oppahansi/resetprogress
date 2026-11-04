@@ -6,6 +6,12 @@ and the project uses [semantic versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-11-04
+
+### Fixed
+
+- The login form and other pages failed to load when the File Transformation plugin was installed. The plugin's tags were also added to jellyfin-web's `*-index-html.*.chunk.js` scripts, which File Transformation matches as `index.html`, and that broke them. Tags now only go into real HTML documents. Update all plugins that were affected (Reset Progress, Theme Switcher, Random Library Cover), because one that still has the bug keeps breaking these scripts.
+
 ## [1.0.2] - 2026-10-31
 
 ### Added
@@ -29,7 +35,8 @@ and the project uses [semantic versioning](https://semver.org).
 - Script injection through the File Transformation plugin when it's installed, otherwise into jellyfin-web's `index.html`.
 - Builds for Jellyfin 10.9, 10.10, 10.11, 12.0, 12.1 and 12.2.
 
-[Unreleased]: https://github.com/oppahansi/resetprogress/compare/v1.0.2-jellyfin-12.4...HEAD
+[Unreleased]: https://github.com/oppahansi/resetprogress/compare/v1.0.3-jellyfin-12.4...HEAD
+[1.0.3]: https://github.com/oppahansi/resetprogress/releases/tag/v1.0.3-jellyfin-12.4
 [1.0.2]: https://github.com/oppahansi/resetprogress/releases/tag/v1.0.2-jellyfin-12.4
 [1.0.1]: https://github.com/oppahansi/resetprogress/releases/tag/v1.0.1-jellyfin-12.2
 [1.0.0]: https://github.com/oppahansi/resetprogress/releases/tag/v1.0.0-jellyfin-12.2
